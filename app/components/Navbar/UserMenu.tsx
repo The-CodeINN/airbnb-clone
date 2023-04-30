@@ -26,8 +26,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     setIsOpen((value) => !value);
   }, []);
 
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
+  const onRent = useCallback(() => {
+      if (!currentUser) {
+       return loginModal.onOpen()
+      }
+
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
+
 
   return (
     <div className='relative'>
@@ -58,7 +64,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => {}} label='My favorites' />
                 <MenuItem onClick={() => {}} label='My reservations' />
                 <MenuItem onClick={() => {}} label='My properties' />
-                <MenuItem onClick={() => {}} label='Airbnb my home' />
+                <MenuItem onClick={rentModal.onOpen} label='Airbnb my home' />
                 <hr />
                 <MenuItem onClick={() => signOut()} label='Logout' />
               </>

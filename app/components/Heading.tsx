@@ -2,8 +2,8 @@
 
 interface HeadingProps {
   title: string;
-  subtitle: string;
-  center: boolean;
+  subtitle?: string;
+  center?: boolean;
 }
 
 const Heading: React.FC<HeadingProps> = ({ title, subtitle, center }) => {
